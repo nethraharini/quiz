@@ -1,43 +1,48 @@
-questions = [
+questions = [  
     {
-        "question": "what is the capital of france?",
-        "options": ["A) london", "B)parris","C)Rome","D)madrid"],
+        "question": "What is the capital of France?",
+        "options": ["A) London", "B) Paris", "C) Rome", "D) Madrid"],
         "answer": "B"
     },
-
+    {    
+        "question": "When did the Chernobyl incident occur?",
+        "options" : ["A) March 1995", "B) April 1986", "C) December 1993", "D) None of the above"],
+        "answer": "B"
+    },
     {
-       "question":"when did chernobyl incident occur?",
-       "options" : ["A) march 1995","B)april 1986","C)december 1993","D)none of the above"],
-       "answer": "B"
-   },
-   {
-       "question":"how many ballon-dors does messi has?",
-       "options": ["A)4","B)6","C)5","D) 8"],
-       "answer": "D"
-
-   },
-   {
-      "question":"who won the election of U.S 2026",
-      "options": ["A)kamala harris","B)donald trump","jill stein","cornel west"],
-      "answer": "B"
+        "question": "How many Ballon d'Or awards does Messi have?",
+        "options": ["A) 4", "B) 6", "C) 5", "D) 8"],
+        "answer": "D"
+    },
+    {
+        "question": "Who won the U.S. election in 2024?",
+        "options": ["A) Kamala Harris", "B) Donald Trump", "C) Jill Stein", "D) Cornel West"],
+        "answer": "B"
     }
-
-
 ]
 
 def quiz():
     score = 0
-    for i,q in enumerate(questions, 1):
-        print(f"questions{i}: {q['question']}")
+    for i, q in enumerate(questions, 1):
+        print(f"\nQuestion {i}: {q['question']}")
         for option in q['options']:
             print(option)
-
-        answer = input("your answer  {A,B,C,D}: ").strip().upper()
-        if answer == q['answer'].strip().upper():
-            print("correct")
-            score +=1
-        else:
-            print(f"Wrong answer :( the answer was {q['answer']}")
+        
+        while True:
+            try:
+                answer = input("Your answer (A, B, C, D): ").strip().upper()
+                if answer not in ['A', 'B', 'C', 'D']:
+                    raise ValueError("Invalid input! Please enter A, B, C, or D.")
+                
+                if answer == q['answer']:
+                    print("Correct!")
+                    score += 1
+                else:
+                    print(f"Wrong answer. The correct answer was {q['answer']}.")
+                break  # Exit the loop if a valid answer is entered
+            except ValueError as e:
+                print(e)
     
-    print(f"\n your final score is {score} out of {len(questions)}, keep learning :)")
+    print(f"\nYour final score is {score} out of {len(questions)}. Keep learning! :)")
+
 quiz()
